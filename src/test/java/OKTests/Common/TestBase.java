@@ -22,7 +22,7 @@ public class TestBase {
     }
 
     protected void pressLoginButton() {
-        $(ProjectData.ProjectSelectors.SUBMIT_BUTTON).click();
+        $x(ProjectData.ProjectSelectors.SUBMIT_BUTTON).click();
     }
 
     protected void openSettingsPage() {
