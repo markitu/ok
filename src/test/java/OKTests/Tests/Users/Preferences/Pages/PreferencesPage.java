@@ -24,7 +24,7 @@ public class PreferencesPage {
         $(By.id(UserPreferencesConstants.Selectors.USER_SURNAME)).val(surname);
     }
 
-    public void setDateOfBirth(String day) {
+    public void setDayOfBirth(String day) {
         $(By.id(UserPreferencesConstants.Selectors.DAY_OF_BIRTH)).click();
         $x("//*[@id = 'field_bday']//option[text() = '" + day + "']").click();
     }

@@ -113,7 +113,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         String old_month = "февраль";
         String old_year = "1988";
 
-        prefPage.setDateOfBirth(new_day);
+        prefPage.setDayOfBirth(new_day);
         prefPage.setMonthOfBirth(new_month);
         prefPage.setYearOfBirth(new_year);
 
@@ -123,7 +123,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
 
         prefPage.openPersonalDataPage();
 
-        prefPage.setDateOfBirth(old_day);
+        prefPage.setDayOfBirth(old_day);
         prefPage.setMonthOfBirth(old_month);
         prefPage.setYearOfBirth(old_year);
 
@@ -136,7 +136,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
     public void changeDOB_changeDayToInvalid_dobDisplaysCorrectly() {
         String new_day = "день";
 
-        prefPage.setDateOfBirth(new_day);
+        prefPage.setDayOfBirth(new_day);
         prefPage.saveChanges();
 
         xPathElementShouldExist(UserPreferencesConstants.Selectors.DOB_INCORRECT);
@@ -170,6 +170,85 @@ public class PersonalInformationTests extends PersonalInformationBase {
         prefPage.saveChanges();
 
         xPathElementShouldExist(UserPreferencesConstants.Selectors.LONG_LIVE_RECORD);
+    }
+
+    @Test
+    public void changeDOB_changeDateTo29February_errorDisplays() {
+        String new_day = "29";
+        String new_month= "февраль";
+        String new_year = "1989";
+
+        prefPage.setDayOfBirth(new_day);
+        prefPage.setMonthOfBirth(new_month);
+        prefPage.setYearOfBirth(new_year);
+
+        prefPage.saveChanges();
+
+        xPathElementShouldExist(UserPreferencesConstants.Selectors.DOB_INCORRECT);
+    }
+
+    @Test
+    public void changeDOB_changeDateTo29FebruaryAndYearIsLeap_errorIsNotDisplayed() {
+        String new_day = "29";
+        String new_month= "февраль";
+        String old_day = "10";
+
+        prefPage.setDayOfBirth(new_day);
+        prefPage.setMonthOfBirth(new_month);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.LEAP_YEAR_NEW_DATE, 3000);
+
+        prefPage.openPersonalDataPage();
+
+        prefPage.setDayOfBirth(old_day);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.BEFORE_DOB_CHANGE, 3000);
+    }
+
+    @Test
+    public void changeDOB_changeDateTo29FebruaryAndYearIsNotLeap_errorDisplays() {
+        String new_day = "29";
+        String new_year = "1989";
+
+        prefPage.setDayOfBirth(new_day);
+        prefPage.setYearOfBirth(new_year);
+
+        prefPage.saveChanges();
+
+        xPathElementShouldExist(UserPreferencesConstants.Selectors.DOB_INCORRECT);
+    }
+
+    @Test
+    public void changeDOB_changeDateTo30February_errorDisplays() {
+        String new_day = "30";
+        String new_month= "февраль";
+        String new_year = "1989";
+
+        prefPage.setDayOfBirth(new_day);
+        prefPage.setMonthOfBirth(new_month);
+        prefPage.setYearOfBirth(new_year);
+
+        prefPage.saveChanges();
+
+        xPathElementShouldExist(UserPreferencesConstants.Selectors.DOB_INCORRECT);
+    }
+
+    @Test
+    public void changeDOB_changeDateTo31February_errorDisplays() {
+        String new_day = "31";
+        String new_month= "февраль";
+        String new_year = "1989";
+
+        prefPage.setDayOfBirth(new_day);
+        prefPage.setMonthOfBirth(new_month);
+        prefPage.setYearOfBirth(new_year);
+
+        prefPage.saveChanges();
+
+        xPathElementShouldExist(UserPreferencesConstants.Selectors.DOB_INCORRECT);
     }
 
     @Test

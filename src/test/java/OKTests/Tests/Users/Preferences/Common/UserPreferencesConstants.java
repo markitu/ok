@@ -41,8 +41,6 @@ public class UserPreferencesConstants {
         public static final String BEFORE_GENDER_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_LIVING_CITY_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе Ярославль";
         public static final String BEFORE_LIVING_CITY_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String LEAP_YEAR_NEW_DATE = "Игорь Машков, родился 29 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
     }
-
-
-
 }
