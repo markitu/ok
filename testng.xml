@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AllTestSuites" verbose="1" >
+    <test name="Nopackage">
+        <classes>
+            <class name="OKTests.Tests.Users.Settings.Tests.PersonalInformationTests"></class>
+        </classes>
+    </test>
+</suite>

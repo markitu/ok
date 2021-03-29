@@ -1,8 +1,8 @@
-package OKTests.Tests.Users.Preferences.Pages;
+package OKTests.Tests.Users.Settings.Pages;
 
 import OKTests.Common.ProjectData;
 import OKTests.Common.TestBase;
-import OKTests.Tests.Users.Preferences.Common.UserSettingsConstants;
+import OKTests.Tests.Users.Settings.Common.UserSettingsConstants;
 import com.codeborne.selenide.CollectionCondition;
 import org.openqa.selenium.By;
 

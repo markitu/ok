@@ -1,9 +1,9 @@
-package OKTests.Tests.Users.Preferences.Common;
+package OKTests.Tests.Users.Settings.Common;
 
 import OKTests.Common.PropertiesLoader;
 import OKTests.Common.TestBase;
 import OKTests.Common.WebDriverConfig;
-import OKTests.Tests.Users.Preferences.Pages.SettingsPage;
+import OKTests.Tests.Users.Settings.Pages.SettingsPage;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;

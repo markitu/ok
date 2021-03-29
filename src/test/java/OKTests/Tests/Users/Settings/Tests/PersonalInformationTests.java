@@ -1,7 +1,7 @@
-package OKTests.Tests.Users.Preferences.Tests;
+package OKTests.Tests.Users.Settings.Tests;
 
-import OKTests.Tests.Users.Preferences.Common.PersonalInformationBase;
-import OKTests.Tests.Users.Preferences.Common.UserSettingsConstants;
+import OKTests.Tests.Users.Settings.Common.PersonalInformationBase;
+import OKTests.Tests.Users.Settings.Common.UserSettingsConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
