@@ -1,6 +1,6 @@
 package OKTests.Tests.Users.Preferences.Common;
 
-public class UserPreferencesConstants {
+public class UserSettingsConstants {
 
     public static final class Selectors {
         public static final String PERSONAL_INFORMATION_PAGE = "//*[@class='user-settings_i_tx textWrap']";
@@ -25,7 +25,6 @@ public class UserPreferencesConstants {
         public static final String WINDOW_CROSS = "//*[@class='ic modal-new_close_ico']";
         public static final String SETTINGS_WINDOW = "//*[@class='modal-new_center']";
         public static final String SUGGESTS_IN_RESULT = "//*[@class='suggest_li']";
-        public static final String CHANGES_WERE_SAVED = "//*[contains(@class,'') and contains(text(),'Ваши настройки сохранены')]";
     }
 
 
@@ -34,9 +33,10 @@ public class UserPreferencesConstants {
         public static final String EMPTY_NAME = "Пожалуйста, укажите ваше имя.";
         public static final String EMPTY_SURNAME = "Пожалуйста, укажите вашу фамилию.";
         public static final String USE_ONLY_LETTERS = "Пожалуйста, используйте только буквы.";
+        public static final String CHANGES_HAVE_BEEN_SAVED = "Ваши настройки сохранены";
     }
 
-    public static final class Texts {
+    public static final class Summary {
         public static final String ORIGIN_TEXT = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_DOB_CHANGE = "Игорь Машков, родился 23 июня 2000, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_GENDER_CHANGE = "Игорь Машков, родилась 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";

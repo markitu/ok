@@ -63,8 +63,8 @@ public class TestBase {
         $(By.id(element)).clear();
     }
 
-    protected void elementByXpathShouldBeVisible(String element) {
-        $x(element).shouldBe(Condition.visible);
+    protected void isNoticeTextEqual(String text) {
+        $x("//*[contains(@class,'tip __active')]//*[text()='" + text + "']").should(Condition.visible);
     }
 
 }

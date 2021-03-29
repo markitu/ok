@@ -3,7 +3,7 @@ package OKTests.Tests.Users.Preferences.Common;
 import OKTests.Common.PropertiesLoader;
 import OKTests.Common.TestBase;
 import OKTests.Common.WebDriverConfig;
-import OKTests.Tests.Users.Preferences.Pages.PreferencesPage;
+import OKTests.Tests.Users.Preferences.Pages.SettingsPage;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -16,13 +16,13 @@ public class PersonalInformationBase extends TestBase {
 
     protected final WebDriverConfig wd = new WebDriverConfig();
 
-    public PreferencesPage prefPage;
+    public SettingsPage prefPage;
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws IOException {
         wd.init();
 
-        prefPage = new PreferencesPage();
+        prefPage = new SettingsPage();
 
         open(PropertiesLoader.getProp("URL"));
         loginAsUser(PropertiesLoader.getProp("USER_LOGIN"), PropertiesLoader.getProp("USER_PASSWORD"));
