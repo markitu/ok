@@ -18,6 +18,40 @@ public class PersonalInformationTests extends PersonalInformationBase {
     }
 
     @Test(enabled = false)
+    public void changeName_newName_newNameSaves() {
+        String new_name = "Дмитрий";
+        String old_name = "Игорь";
+
+        prefPage.setUserName(new_name);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_NAME_CHANGE, 3000);
+
+        prefPage.openPersonalDataPage();
+        prefPage.setUserName(old_name);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
+    }
+
+    @Test(enabled = false)
+    public void changeSurname_newSurname_newSurnameSaves() {
+        String new_surname = "Стольный";
+        String old_surname = "Машков";
+
+        prefPage.setUserSurname(new_surname);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_SURNAME_CHANGE, 3000);
+
+        prefPage.openPersonalDataPage();
+        prefPage.setUserSurname(old_surname);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
+    }
+
+    @Test(enabled = false)
     public void changeSurname_extraAttempts_errorDisplayed() {
         String surname = "Иванов";
 
@@ -25,6 +59,40 @@ public class PersonalInformationTests extends PersonalInformationBase {
         prefPage.saveChanges();
 
         Assert.assertEquals(getTextById(UserPreferencesConstants.Selectors.NOTIFY_PANEL_MSG), UserPreferencesConstants.Messages.CHANGING_NAME_ERROR);
+    }
+
+    @Test(enabled = false)
+    public void changeName_maxLengthReached_saveOnly16Symbols() {
+        String new_name = "аааааааааааааааар";
+        String old_name = "Игорь";
+
+        prefPage.setUserName(new_name);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_NAME_MAX_LENGTH_CHANGE, 3000);
+
+        prefPage.openPersonalDataPage();
+        prefPage.setUserName(old_name);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
+    }
+
+    @Test(enabled = false)
+    public void changeSurname_maxLengthReached_saveOnly24Symbols() {
+        String new_surname = "аааааааааааааааааааааааащ";
+        String old_surname = "Машков";
+
+        prefPage.setUserSurname(new_surname);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_SURNAME_MAX_LENGTH_CHANGE, 3000);
+
+        prefPage.openPersonalDataPage();
+        prefPage.setUserSurname(old_surname);
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
     }
 
     @Test(enabled = false)
@@ -38,7 +106,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         xPathElementShouldNotExist(UserPreferencesConstants.Selectors.SETTINGS_WINDOW);
     }
 
-    @Test
+    @Test(enabled = false)
     public void changeName_closeErrorWindowByButton_windowCloses() {
         String surname = "Иванов";
 
@@ -129,7 +197,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
 
         prefPage.saveChanges();
 
-        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.BEFORE_DOB_CHANGE, 3000);
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
     }
 
     @Test
@@ -205,7 +273,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         prefPage.setDayOfBirth(old_day);
         prefPage.saveChanges();
 
-        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.BEFORE_DOB_CHANGE, 3000);
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
     }
 
     @Test
@@ -278,14 +346,14 @@ public class PersonalInformationTests extends PersonalInformationBase {
     }
 
     @Test
-    public void setLivingPlace_newValidPlace_errorIsDisplayed() {
+    public void setLivingPlace_newValidPlaceInRussian_successfullyChanged() {
         String newLivingCity = "Ярославль";
         String oldLivingCity = "Голицыно";
         String oldCityName = "г. Голицыно (Одинцовский район)";
 
         prefPage.changeLivingCity(newLivingCity);
 
-        prefPage.chooseLivingCity(newLivingCity);
+        prefPage.chooseCity(newLivingCity);
 
         prefPage.saveChanges();
 
@@ -294,7 +362,41 @@ public class PersonalInformationTests extends PersonalInformationBase {
         prefPage.openPersonalDataPage();
         prefPage.changeLivingCity(oldLivingCity);
 
-        prefPage.chooseLivingCity(oldCityName);
+        prefPage.chooseCity(oldCityName);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.BEFORE_LIVING_CITY_CHANGE, 3000);
+    }
+
+    @Test
+    public void setLivingPlace_10SearchResultsInReturn_success() {
+        String LivingCity = "а";
+        Integer resultsInReturn = 10;
+
+        prefPage.changeLivingCity(LivingCity);
+        prefPage.countElementsByXpathOnPage(UserPreferencesConstants.Selectors.SUGGESTS_IN_RESULT, resultsInReturn);
+    }
+
+    @Test
+    public void setLivingPlace_newValidPlaceInEnglish_successfullyChanged() {
+        String newLivingCityInEnglish = "Yaro";
+        String newLivingCityInRussian = "Ярославль";
+        String oldLivingCity = "Голицыно";
+        String oldCityName = "г. Голицыно (Одинцовский район)";
+
+        prefPage.changeLivingCity(newLivingCityInEnglish);
+
+        prefPage.chooseCity(newLivingCityInRussian);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_LIVING_CITY_CHANGE, 3000);
+
+        prefPage.openPersonalDataPage();
+        prefPage.changeLivingCity(oldLivingCity);
+
+        prefPage.chooseCity(oldCityName);
 
         prefPage.saveChanges();
 
@@ -314,5 +416,60 @@ public class PersonalInformationTests extends PersonalInformationBase {
 
         xPathElementShouldNotExist(UserPreferencesConstants.Selectors.SETTINGS_WINDOW);
     }
+
+    @Test
+    public void setOriginCity_validChange_success() {
+        String newOriginCity = "Ярославль";
+
+        prefPage.changeOriginCity(newOriginCity);
+        prefPage.chooseCity(newOriginCity);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_CHANGE_ORIGIN_CITY, 3000);
+
+        prefPage.openPersonalDataPage();
+        clearTextFromElementById(UserPreferencesConstants.Selectors.ORIGIN_CITY);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
+    }
+
+    @Test
+    public void setOriginCity_newPlaceInEnglish_success() {
+        String newOriginCityInRussian = "Ярославль";
+        String newOriginCityInEnglish = "Yaro";
+
+        prefPage.changeOriginCity(newOriginCityInEnglish);
+        prefPage.chooseCity(newOriginCityInRussian);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.AFTER_CHANGE_ORIGIN_CITY, 3000);
+
+        prefPage.openPersonalDataPage();
+        clearTextFromElementById(UserPreferencesConstants.Selectors.ORIGIN_CITY);
+
+        prefPage.saveChanges();
+
+        waitForXpathElementContainText(UserPreferencesConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserPreferencesConstants.Texts.ORIGIN_TEXT, 3000);
+    }
+
+    @Test
+    public void setOriginPlace_10SearchResultsInReturn_success() {
+        String originCity = "а";
+        Integer resultsInReturn = 10;
+
+        prefPage.changeOriginCity(originCity);
+        prefPage.countElementsByXpathOnPage(UserPreferencesConstants.Selectors.SUGGESTS_IN_RESULT, resultsInReturn);
+    }
+
+    @Test
+    public void changesWereSavedMessage_isVisible() {
+        prefPage.saveChanges();
+        elementByXpathShouldBeVisible(UserPreferencesConstants.Selectors.CHANGES_WERE_SAVED);
+    }
+
 
 }

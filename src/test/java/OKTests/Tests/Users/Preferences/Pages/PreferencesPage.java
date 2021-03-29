@@ -2,6 +2,7 @@ package OKTests.Tests.Users.Preferences.Pages;
 
 import OKTests.Common.ProjectData;
 import OKTests.Tests.Users.Preferences.Common.UserPreferencesConstants;
+import com.codeborne.selenide.CollectionCondition;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -35,7 +36,7 @@ public class PreferencesPage {
     }
 
     public void setYearOfBirth(String year) {
-        $(By.id(UserPreferencesConstants.Selectors.MONTH_OF_BIRTH)).click();
+        $(By.id(UserPreferencesConstants.Selectors.YEAR_OF_BIRTH)).click();
         $x("//*[@id = 'field_byear']//option[text() = '" + year + "']").click();
     }
 
@@ -55,7 +56,11 @@ public class PreferencesPage {
         $(By.id(UserPreferencesConstants.Selectors.LIVING_CITY)).val(city);
     }
 
-    public void chooseLivingCity(String city) {
+    public void changeOriginCity(String city) {
+        $(By.id(UserPreferencesConstants.Selectors.ORIGIN_CITY)).val(city);
+    }
+
+    public void chooseCity(String city) {
         $x("//*[contains(@class,'ellip') and text() = '" + city + "']").click();
     }
 
@@ -71,5 +76,7 @@ public class PreferencesPage {
         $(By.id(ProjectData.ProjectSelectors.CLOSE_BUTTON)).click();
     }
 
-
+    public void countElementsByXpathOnPage(String element, int number) {
+        $$x(element).shouldHave(CollectionCondition.size(number));
+    }
 }

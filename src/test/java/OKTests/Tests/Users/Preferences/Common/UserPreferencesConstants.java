@@ -24,6 +24,8 @@ public class UserPreferencesConstants {
         public static final String FEMALE_GENDER = "field_gender_2";
         public static final String WINDOW_CROSS = "//*[@class='ic modal-new_close_ico']";
         public static final String SETTINGS_WINDOW = "//*[@class='modal-new_center']";
+        public static final String SUGGESTS_IN_RESULT = "//*[@class='suggest_li']";
+        public static final String CHANGES_WERE_SAVED = "//*[contains(@class,'') and contains(text(),'Ваши настройки сохранены')]";
     }
 
 
@@ -35,12 +37,17 @@ public class UserPreferencesConstants {
     }
 
     public static final class Texts {
-        public static final String BEFORE_DOB_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String ORIGIN_TEXT = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_DOB_CHANGE = "Игорь Машков, родился 23 июня 2000, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_GENDER_CHANGE = "Игорь Машков, родилась 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String BEFORE_GENDER_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String AFTER_LIVING_CITY_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе Ярославль";
         public static final String BEFORE_LIVING_CITY_CHANGE = "Игорь Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
         public static final String LEAP_YEAR_NEW_DATE = "Игорь Машков, родился 29 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String AFTER_NAME_CHANGE = "Дмитрий Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String AFTER_SURNAME_CHANGE = "Игорь Стольный, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String AFTER_NAME_MAX_LENGTH_CHANGE = "аааааааааааааааа Машков, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String AFTER_SURNAME_MAX_LENGTH_CHANGE = "Игорь аааааааааааааааааааааааа, родился 10 февраля 1988, сейчас живу в городе г. Голицыно (Одинцовский район)";
+        public static final String AFTER_CHANGE_ORIGIN_CITY = "Игорь Машков, родился 10 февраля 1988 в городе Ярославль, сейчас живу в городе г. Голицыно (Одинцовский район)";
     }
 }

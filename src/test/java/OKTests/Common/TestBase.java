@@ -59,4 +59,12 @@ public class TestBase {
         $x(element).waitUntil(Condition.exactText(text), milliseconds);
     }
 
+    protected void clearTextFromElementById(String element) {
+        $(By.id(element)).clear();
+    }
+
+    protected void elementByXpathShouldBeVisible(String element) {
+        $x(element).shouldBe(Condition.visible);
+    }
+
 }

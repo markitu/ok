@@ -2,19 +2,17 @@ package OKTests.Common;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
-import java.net.MalformedURLException;
 
 public class WebDriverConfig {
 
     public WebDriver driver;
 
-    public void init() throws MalformedURLException {
+    public void init() {
         File file = new File(new File("./src/main/resources/chromedriver.exe").getAbsolutePath());
         System.setProperty("webdriver.chrome.driver", String.valueOf(file));
         Configuration.timeout = 5000;
@@ -40,7 +38,4 @@ public class WebDriverConfig {
         driver.quit();
     }
 
-    public void setWindowSize(int width, int height) {
-        driver.manage().window().setSize(new Dimension(width, height));
-    }
 }
