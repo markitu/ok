@@ -1,13 +1,14 @@
 package OKTests.Tests.Users.Preferences.Pages;
 
 import OKTests.Common.ProjectData;
+import OKTests.Common.TestBase;
 import OKTests.Tests.Users.Preferences.Common.UserSettingsConstants;
 import com.codeborne.selenide.CollectionCondition;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SettingsPage {
+public class SettingsPage extends TestBase {
 
     public void editPersonalInformation() {
         $x(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_PAGE).click();
@@ -27,17 +28,17 @@ public class SettingsPage {
 
     public void setDayOfBirth(String day) {
         $(By.id(UserSettingsConstants.Selectors.DAY_OF_BIRTH)).click();
-        $x("//*[@id = 'field_bday']//option[text() = '" + day + "']").click();
+        $x(String.format(UserSettingsConstants.Selectors.DAY_OF_BIRTH_DROPDOWN, day)).click();
     }
 
     public void setMonthOfBirth(String month) {
         $(By.id(UserSettingsConstants.Selectors.MONTH_OF_BIRTH)).click();
-        $x("//*[@id = 'field_bmonth']//option[text() = '" + month + "']").click();
+        $x(String.format(UserSettingsConstants.Selectors.MONTH_OF_BIRTH_DROPDOWN, month)).click();
     }
 
     public void setYearOfBirth(String year) {
         $(By.id(UserSettingsConstants.Selectors.YEAR_OF_BIRTH)).click();
-        $x("//*[@id = 'field_byear']//option[text() = '" + year + "']").click();
+        $x(String.format(UserSettingsConstants.Selectors.YEAR_OF_BIRTH_DROPDOWN, year)).click();
     }
 
     public void openPersonalDataPage() {
@@ -61,7 +62,7 @@ public class SettingsPage {
     }
 
     public void chooseCity(String city) {
-        $x("//*[contains(@class,'ellip') and text() = '" + city + "']").click();
+        $x(String.format(UserSettingsConstants.Selectors.CHOOSE_CITY, city)).click();
     }
 
     public void closeSettingsWindowsByCross() {
@@ -73,10 +74,26 @@ public class SettingsPage {
     }
 
     public void closeSettingsWindowByCloseButton() {
-        $(By.id(ProjectData.ProjectSelectors.CLOSE_BUTTON)).click();
+        $(By.id(ProjectData.Selectors.CLOSE_BUTTON)).click();
     }
 
     public void countElementsByXpathOnPage(String element, int number) {
         $$x(element).shouldHave(CollectionCondition.size(number));
+    }
+
+    public void setDefaultUserSettings() {
+        openPersonalDataPage();
+        setUserName(ProjectData.UserData.USER_NAME);
+        setUserSurname(ProjectData.UserData.USER_SURNAME);
+        setDayOfBirth(ProjectData.UserData.DAY_OF_BIRTH);
+        setMonthOfBirth(ProjectData.UserData.MONTH_OF_BIRTH);
+        setYearOfBirth(ProjectData.UserData.YEAR_OF_BIRTH);
+        changeGenderToMen();
+        changeLivingCity(ProjectData.UserData.OLD_CITY_NAME);
+        chooseCity(ProjectData.UserData.OLD_CITY_NAME);
+        clearTextFromElementById(UserSettingsConstants.Selectors.ORIGIN_CITY);
+        saveChanges();
+
+        waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.ORIGIN_TEXT, 3000);
     }
 }

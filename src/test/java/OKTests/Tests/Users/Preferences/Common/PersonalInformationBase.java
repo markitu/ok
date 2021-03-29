@@ -8,21 +8,19 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.open;
 
 public class PersonalInformationBase extends TestBase {
 
     protected final WebDriverConfig wd = new WebDriverConfig();
 
-    public SettingsPage prefPage;
+    public SettingsPage settingsPage;
 
     @BeforeSuite(alwaysRun = true)
-    public void setUp() throws IOException {
+    public void setUp() {
         wd.init();
 
-        prefPage = new SettingsPage();
+        settingsPage = new SettingsPage();
 
         open(PropertiesLoader.getProp("URL"));
         loginAsUser(PropertiesLoader.getProp("USER_LOGIN"), PropertiesLoader.getProp("USER_PASSWORD"));
@@ -36,7 +34,7 @@ public class PersonalInformationBase extends TestBase {
     @BeforeMethod
     public void init() {
         openSettingsPage();
-        prefPage.editPersonalInformation();
+        settingsPage.editPersonalInformation();
     }
 
 }

@@ -14,29 +14,23 @@ public class TestBase {
     }
 
     protected void loginInput(String username) {
-        $(ProjectData.ProjectSelectors.LOGIN_INPUT).val(username);
+        $(ProjectData.Selectors.LOGIN_INPUT).val(username);
     }
 
     protected void passwordInput(String password) {
-        $(ProjectData.ProjectSelectors.PASSWORD_INPUT).val(password);
+        $(ProjectData.Selectors.PASSWORD_INPUT).val(password);
     }
 
     protected void pressLoginButton() {
-        $x(ProjectData.ProjectSelectors.SUBMIT_BUTTON).click();
+        $x(ProjectData.Selectors.SUBMIT_BUTTON).click();
     }
 
     protected void openSettingsPage() {
-//        $x(ProjectData.ProjectSelectors.MENU_FRAME).click();
-//        $x(ProjectData.ProjectSelectors.SETTING_PAGE).click();
-        open("https://ok.ru/settings");
+        open(PropertiesLoader.getProp("SETTINGS_URL"));
     }
 
     protected static String getTextById(String locator) {
         return $(By.id(locator)).getText();
-    }
-
-    protected static String getTextByCSS(String locator) {
-        return $(locator).getText();
     }
 
     protected static String getTextByXpath(String locator) {
@@ -51,10 +45,6 @@ public class TestBase {
         $x(element).shouldNot(Condition.exist);
     }
 
-    protected void CSSElementShouldExist(String element) {
-        $(element).should(Condition.exist);
-    }
-
     protected void waitForXpathElementContainText(String element, String text, int milliseconds) {
         $x(element).waitUntil(Condition.exactText(text), milliseconds);
     }
@@ -64,7 +54,7 @@ public class TestBase {
     }
 
     protected void isNoticeTextEqual(String text) {
-        $x("//*[contains(@class,'tip __active')]//*[text()='" + text + "']").should(Condition.visible);
+        $x(String.format(ProjectData.Selectors.NOTICE, text)).should(Condition.visible);
     }
 
 }
