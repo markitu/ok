@@ -25,7 +25,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setUserName(new_name);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_NAME_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_NAME_CHANGE, 3000);
         }
 
         finally {
@@ -41,7 +41,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setUserSurname(new_surname);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_SURNAME_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_SURNAME_CHANGE, 3000);
         }
 
         finally {
@@ -67,7 +67,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setUserName(new_name);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_NAME_MAX_LENGTH_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_NAME_MAX_LENGTH_CHANGE, 3000);
         }
 
         finally {
@@ -83,7 +83,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setUserSurname(new_surname);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_SURNAME_MAX_LENGTH_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_SURNAME_MAX_LENGTH_CHANGE, 3000);
         }
 
         finally {
@@ -131,7 +131,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setUserName(name);
         settingsPage.saveChanges();
 
-        Assert.assertEquals(getTextByXpath(UserSettingsConstants.Selectors.ERROR_MSG_EMPTY_NAME), UserSettingsConstants.Messages.EMPTY_NAME);
+        Assert.assertEquals(getTextByXpath(String.format(UserSettingsConstants.Selectors.ERROR_MSG_EMPTY_NAME, UserSettingsConstants.Messages.EMPTY_NAME)), UserSettingsConstants.Messages.EMPTY_NAME);
     }
 
     @Test
@@ -141,7 +141,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setUserSurname(surname);
         settingsPage.saveChanges();
 
-        Assert.assertEquals(getTextByXpath(UserSettingsConstants.Selectors.ERROR_MSG_EMPTY_SURNAME), UserSettingsConstants.Messages.EMPTY_SURNAME);
+        Assert.assertEquals(getTextByXpath(String.format(UserSettingsConstants.Selectors.ERROR_MSG_EMPTY_SURNAME, UserSettingsConstants.Messages.EMPTY_SURNAME)), UserSettingsConstants.Messages.EMPTY_SURNAME);
     }
 
 
@@ -152,7 +152,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setUserSurname(name);
         settingsPage.saveChanges();
 
-        Assert.assertEquals(getTextByXpath(UserSettingsConstants.Selectors.ERROR_MSG_USE_ONLY_LETTERS), UserSettingsConstants.Messages.USE_ONLY_LETTERS);
+        Assert.assertEquals(getTextByXpath(String.format(UserSettingsConstants.Selectors.ERROR_MSG_USE_ONLY_LETTERS, UserSettingsConstants.Messages.USE_ONLY_LETTERS)), UserSettingsConstants.Messages.USE_ONLY_LETTERS);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setUserSurname(surname);
         settingsPage.saveChanges();
 
-        Assert.assertEquals(getTextByXpath(UserSettingsConstants.Selectors.ERROR_MSG_USE_ONLY_LETTERS), UserSettingsConstants.Messages.USE_ONLY_LETTERS);
+        Assert.assertEquals(getTextByXpath(String.format(UserSettingsConstants.Selectors.ERROR_MSG_USE_ONLY_LETTERS, UserSettingsConstants.Messages.USE_ONLY_LETTERS)), UserSettingsConstants.Messages.USE_ONLY_LETTERS);
     }
 
     @Test
@@ -177,7 +177,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setYearOfBirth(new_year);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_DOB_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_DOB_CHANGE, 3000);
         }
 
         finally {
@@ -193,7 +193,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setDayOfBirth(new_day);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -203,7 +203,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setMonthOfBirth(new_month);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -213,7 +213,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -223,7 +223,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.LONG_LIVE_RECORD);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.LONG_LIVE_RECORD, UserSettingsConstants.Messages.LONGEST_LIVING_RECORD_IS_BEATEN));
     }
 
     @Test
@@ -237,7 +237,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -250,7 +250,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.setMonthOfBirth(new_month);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.LEAP_YEAR_NEW_DATE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.LEAP_YEAR_NEW_DATE, 3000);
         }
 
         finally {
@@ -267,7 +267,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -281,7 +281,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -295,7 +295,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.setYearOfBirth(new_year);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.DOB_INCORRECT);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.DOB_INCORRECT, UserSettingsConstants.Messages.DOB_IS_INCORRECT));
     }
 
     @Test
@@ -305,7 +305,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.changeGenderToWomen();
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_GENDER_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_GENDER_CHANGE, 3000);
         }
 
         finally {
@@ -320,7 +320,17 @@ public class PersonalInformationTests extends PersonalInformationBase {
         settingsPage.changeLivingCity(placeName);
         settingsPage.saveChanges();
 
-        xPathElementShouldExist(UserSettingsConstants.Selectors.LIVING_CITY_EMPTY);
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.RESIDENCE_CITY_EMPTY, UserSettingsConstants.Messages.EMPTY_RESIDENCE_PLACE));
+    }
+
+    @Test
+    public void setLivingPlace_specialChar_errorIsDisplayed() {
+        String placeName = "$";
+
+        settingsPage.changeOriginCity(placeName);
+        settingsPage.saveChanges();
+
+        xPathElementShouldExist(String.format(UserSettingsConstants.Selectors.RESIDENCE_CITY_EMPTY, UserSettingsConstants.Messages.INCORRECT_ORIGIN_CITY));
     }
 
     @Test
@@ -332,7 +342,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.chooseCity(newLivingCity);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_LIVING_CITY_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_RESIDENCE_CITY_CHANGE, 3000);
         }
 
         finally {
@@ -359,7 +369,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.chooseCity(newLivingCityInRussian);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_LIVING_CITY_CHANGE, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_RESIDENCE_CITY_CHANGE, 3000);
         }
 
         finally {
@@ -390,7 +400,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.chooseCity(newOriginCity);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_CHANGE_ORIGIN_CITY, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_CHANGE_ORIGIN_CITY, 3000);
         }
 
         finally {
@@ -409,7 +419,7 @@ public class PersonalInformationTests extends PersonalInformationBase {
             settingsPage.chooseCity(newOriginCityInRussian);
             settingsPage.saveChanges();
 
-            waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.AFTER_CHANGE_ORIGIN_CITY, 3000);
+            waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.AFTER_CHANGE_ORIGIN_CITY, 3000);
         }
 
         finally {

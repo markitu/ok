@@ -42,7 +42,7 @@ public class SettingsPage extends TestBase {
     }
 
     public void openPersonalDataPage() {
-        $x(UserSettingsConstants.Selectors.PERSONAL_DATA_PAGE).click();
+        $x(String.format(UserSettingsConstants.Selectors.PERSONAL_DATA_PAGE, UserSettingsConstants.Messages.PERSONAL_DATA)).click();
     }
 
     public void changeGenderToWomen() {
@@ -54,7 +54,7 @@ public class SettingsPage extends TestBase {
     }
 
     public void changeLivingCity(String city) {
-        $(By.id(UserSettingsConstants.Selectors.LIVING_CITY)).val(city);
+        $(By.id(UserSettingsConstants.Selectors.RESIDENCE_CITY)).val(city);
     }
 
     public void changeOriginCity(String city) {
@@ -94,6 +94,6 @@ public class SettingsPage extends TestBase {
         clearTextFromElementById(UserSettingsConstants.Selectors.ORIGIN_CITY);
         saveChanges();
 
-        waitForXpathElementContainText(UserSettingsConstants.Selectors.SUMMARY_PERSONAL_INFORMATION, UserSettingsConstants.Summary.ORIGIN_TEXT, 3000);
+        waitForXpathElementContainText(UserSettingsConstants.Selectors.PERSONAL_INFORMATION_SUMMARY, UserSettingsConstants.Summary.ORIGIN_TEXT, 3000);
     }
 }
